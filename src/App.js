@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <section className="instructions">
+        <section className="movement">
+          <h1 className="section-title">
+            You can use the following keys to move your boxes
+          </h1>
+          <section className="key-info">
+            <div className="movement-keys">
+              <span className="up">W</span>
+              <span className="left">A</span>
+              <span className="down">S</span>
+              <span className="right">D</span>
+            </div>
+            <h4> OR </h4>
+            <div className="movement-keys">
+              <span className="up">W</span>
+              <span className="left">A</span>
+              <span className="down">S</span>
+              <span className="right">D</span>
+            </div>
+          </section>
+        </section>
+        <section className="add-box-section">
+          <h1 className="section-title"> You can also add more boxes</h1>
+          <button className="btn">Add box</button>
+        </section>
+      </section>
+      <section className="box-container"></section>
     </div>
   );
 }
