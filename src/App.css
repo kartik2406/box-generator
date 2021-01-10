@@ -11,6 +11,12 @@
   align-items: center;
   margin-bottom: 50px;
 }
+
+.movement {
+  display: flex;
+  flex-direction: column;
+}
+
 .key-info {
   display: flex;
   justify-content: space-around;
@@ -21,6 +27,7 @@
   text-align: center;
 }
 
+/* Styles for movement keys component */
 .movement-keys {
   display: grid;
   grid-template-columns: repeat(3, 50px);
@@ -58,6 +65,7 @@
   gap: 15px;
 }
 
+/* Button styles  */
 .btn {
   background: none;
   border: none;
@@ -73,26 +81,23 @@
   background: var(--primary);
   color: var(--text-color-dark);
 }
+
 .box-container {
   margin-top: 2%;
   width: 100%;
   height: auto;
   min-height: 55vh;
   background: rgb(160, 160, 160, 0.2);
-  border-radius: 5px;
-  /* padding: 2%; */
-  display: flex;
-  flex-wrap: wrap;
   gap: 10px;
   position: relative;
   margin-bottom: 50px;
 }
 
+/* Box styles */
 .box {
   width: 100px;
   height: 100px;
   background: rebeccapurple;
-  /* opacity: 0.6; */
   cursor: pointer;
   position: absolute;
 }
@@ -102,6 +107,7 @@
   outline: 2px solid var(--primary);
 }
 
+/* Toggle switch styles  */
 .switch {
   display: flex;
   flex-direction: column;
@@ -145,4 +151,9 @@
 
 .switch label {
   font-size: 1.2rem;
+}
+
+/* Helepers */
+.text-center {
+  text-align: center;
 }
