@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 
 const getColor = () => {
@@ -28,6 +28,26 @@ const getColor = () => {
   ];
   return colors[Math.round(Math.random() * (colors.length - 1))];
 };
+
+const getNewPosition = (keyCode, pos) => {
+  const KEY_CODES = {
+    UP: ["KeyW", "ArrowUp"],
+    DOWN: ["KeyS", "ArrowDown"],
+    LEFT: ["KeyA", "ArrowLeft"],
+    RIGHT: ["KeyD", "ArrowRight"],
+  };
+
+  if (KEY_CODES.UP.includes(keyCode)) {
+    pos.top = pos.top - 1;
+  } else if (KEY_CODES.DOWN.includes(keyCode)) {
+    pos.top = pos.top + 1;
+  } else if (KEY_CODES.LEFT.includes(keyCode)) {
+    pos.left = pos.left - 1;
+  } else if (KEY_CODES.RIGHT.includes(keyCode)) {
+    pos.left = pos.left + 1;
+  }
+  return pos;
+};
 function App() {
   const [boxes, setBoxes] = useState([]);
   const [control, setControl] = useState(true);
@@ -36,11 +56,15 @@ function App() {
     setBoxes((prev) => {
       const last = prev[prev.length - 1];
       return [
-        ...prev,
+        ...prev.map((prev) => {
+          delete prev.isSelected;
+          return prev;
+        }),
         {
           id: last ? last.id + 1 : 0,
           color: getColor(),
           pos: { top: 0, left: 0 },
+          isSelected: true,
         },
       ];
     });
@@ -56,35 +80,23 @@ function App() {
       return prev;
     });
   };
-  function moveSelectedBox(event) {
+  const moveSelectedBox = useCallback((event) => {
     console.log("Listener running");
     let keyCode = event.code;
     console.log("KEycode", keyCode);
-    const KEY_CODES = {
-      UP: ["KeyW", "ArrowUp"],
-      DOWN: ["KeyS", "ArrowDown"],
-      LEFT: ["KeyA", "ArrowLeft"],
-      RIGHT: ["KeyD", "ArrowRight"],
-    };
+
     setBoxes((prev) => {
       const selectedBox = prev.find((box) => box.isSelected);
 
       if (selectedBox) {
         if (keyCode === "Delete") {
           return prev.filter((box) => box.id != selectedBox.id);
-        } else if (KEY_CODES.UP.includes(keyCode)) {
-          selectedBox.pos.top = selectedBox.pos.top - 1;
-        } else if (KEY_CODES.DOWN.includes(keyCode)) {
-          selectedBox.pos.top = selectedBox.pos.top + 1;
-        } else if (KEY_CODES.LEFT.includes(keyCode)) {
-          selectedBox.pos.left = selectedBox.pos.left - 1;
-        } else if (KEY_CODES.RIGHT.includes(keyCode)) {
-          selectedBox.pos.left = selectedBox.pos.left + 1;
         }
+        selectedBox.pos = getNewPosition(keyCode, selectedBox.pos);
       }
       return [...prev];
     });
-  }
+  }, []);
 
   useEffect(() => {
     // console.log("useEffect called");
