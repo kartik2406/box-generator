@@ -11,4 +11,4 @@ Although it should not matter much but just in case there are any errors, I have
 
 On the UI you can add a box by clicking the 'Add box' button. Box controls(Keyboard based movement) is disabled when there are no boxes, user can also manually toggle the behaviour. When a box is added it gets selected by default, user can click on any box to select it. Only the selected box can be used by the user either by using WASD or arrow keys, delete key deletes the selected box.
 
-### Github pages
+### [Visit app hosted using Github pages](https://kartik2406.github.io/box-generator/)
