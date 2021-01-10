@@ -76,14 +76,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  position: relative;
 }
 
 .box {
   width: 8rem;
   height: 8rem;
   background: rebeccapurple;
-  opacity: 0.4;
+  /* opacity: 0.6; */
   cursor: pointer;
+  position: absolute;
 }
 
 .box:focus,
